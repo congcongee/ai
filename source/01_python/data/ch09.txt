@@ -1,0 +1,6 @@
+Hello
+World
+Python is easy.
+Python is smart.
+print함수는 파일출력, 화면출력
+
