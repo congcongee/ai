@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        table {background-color: red;}
+        tr{background-color: yellow;}
+        tr:hover {background-color: lightgreen;}
+        caption {background-color: lightyellow;}
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>표 태그 예제</title>
+        <link rel="stylesheet" href="ex.css">
+    </head>
+    <body>
+
+        <!-- table ex1 -->
+        <table>
+            <caption>table ex1</caption>
+            <tr>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>60</td>
+                <td>80</td>
+            </tr>
+        </table>
+
+        <br>
+
+        <!-- table ex2 -->
+        <table>
+            <caption>table ex2</caption>
+            <tr>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>60</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <!-- 2개의 칸을 하나로 합침 -->
+                <td colspan="2">평균</td>
+                <td>80</td>
+            </tr>
+        </table>
+
+        <br>
+
+        <!-- table ex3 -->
+        <table>
+            <caption>table ex3</caption>
+            <tr>
+                <!-- 3개의 행(줄)을 하나로 합침 -->
+                <th rowspan="3">중간고사 성적</th>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>60</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td colspan="2">평균</td>
+                <td>80</td>
+            </tr>
+        </table>
+
+    </body>
+</html>
+</body>
+</html>
