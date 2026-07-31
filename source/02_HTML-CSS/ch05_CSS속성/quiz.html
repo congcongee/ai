@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #container {
+            width: 800px;
+            margin: 0 auto;
+            padding: 5px;
+            border: 1px solid #aaa;
+        }
+        #HEADER {
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            margin-bottom: 5px;
+            background-color: yellow;
+            color: black;
+            border: 1px solid #888;
+        }
+        #NAVIGATION {
+            padding: 15px 5px;
+            margin-bottom: 5px;
+            text-align: center;
+            border: 1px solid #888;
+        }
+            #NAVIGATION #MENU_BOX div {
+                display: inline-block;
+                padding: 10px 35px;
+                text-align: center;
+                margin-top: 10px;
+                background-color: pink;
+                color: darkmagenta;
+                font-weight: bold;
+                border: 15px;
+            }
+                #NAVIGATION #MENU_BOX div:first-child {
+                    border-radius: 15px 0 0 15px; 
+                }
+                #NAVIGATION #MENU_BOX div:last-child {
+                    border-radius: 0 15px 15px 0;
+                }
+        #MIDDLE {
+            margin-bottom: 5px;
+            overflow: hidden;
+        }
+            #MIDDLE div:first-child {
+                float: left;
+                width: 583px;
+                height: 300px;
+                text-align: center;
+                border: 1px solid #888;
+            }
+            #MIDDLE div:last-child {
+                float: right; 
+                width: 208px; 
+                height: 300px; 
+                text-align: center;
+                border: 1px solid #888;
+            }
+        #FOOTER {
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            margin-bottom: 5px;
+            background-color: yellow;
+            color: black;
+            border: 1px solid #888;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="HEADER">HEADER</div>
+        <div id="NAVIGATION">
+            NAVIGATION
+            <div id="MENU_BOX">
+            <div>menu1</div>
+            <div>menu2</div>
+            <div>menu3</div>
+            <div>menu4</div>
+            <div>menu5</div>
+        </div>
+        </div>
+        <div id="MIDDLE">
+            <div>CONTENT</div>
+            <div>BANNER</div>
+        </div>
+        <div id="FOOTER">FOOTER</div>
+    </div>
+</body>
+</html>
