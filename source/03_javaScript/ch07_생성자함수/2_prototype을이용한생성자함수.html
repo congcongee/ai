@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
   <script>
-    // 생성자함수
+    // 생성자함수(ch07_생성자함수/2_prototype를이용한생성자함수.html)
     function Student(name, kor, mat, eng){
       this.name = name;
       this.kor  = kor;
@@ -20,14 +20,14 @@
     };
     Student.prototype.toString = function(){
       let output = '';
-          for(let key in this){
-            if(key!='getSum' && key!='getAvg' && key!='toString'){
-              output += key + ':' + this[key] + ' &nbsp; ';
-            }else if(key=='getSum' || key=='getAvg'){
-              output += key.substring(3).toUpperCase() + ':' + this[key]() + ' &nbsp; ';
-            }//if
-          }//for
-          return output;
+      for(let key in this){
+        if(key!='getSum' && key!='getAvg' && key!='toString'){
+          output += key + ':' + this[key] + ' &nbsp; ';
+        }else if(key=='getSum' || key=='getAvg'){
+          output += key.substring(3).toUpperCase() + ':' + this[key]() + ' &nbsp; ';
+        }//if
+      }//for
+      return output;
     };
     let students = [];
     
