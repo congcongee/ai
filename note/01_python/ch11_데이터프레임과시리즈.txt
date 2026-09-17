@@ -1,0 +1,74 @@
+판다스(Pandas) 패키지 개요
+  넘파이 기반의 데이터 분석 필수 라이브러리
+  1차원 구조(Series)와 2차원 구조(DataFrame) 제공
+  파일 입출력, 데이터 전처리, 병합, 정렬, 결측치 처리 기능 지원 (Pandas API Reference)
+
+데이터프레임 생성 및 변환
+- pd.DataFrame(dict) : 딕셔너리를 이용한 2차원 데이터프레임 생성
+- pd.DataFrame(list) / np.c_[a, b] : 리스트 및 넘파이 배열 결합을 통한 생성
+- df.to_dict() : 데이터프레임을 딕셔너리로 변환
+- df.to_numpy() : 데이터프레임을 넘파이 배열로 변환
+
+파일 입출력(I/O)
+- pd.read_json() : JSON 파일 읽기 (기본 인코딩: utf-8)
+- pd.read_csv() : CSV 파일 읽기 (encoding, sep, comment, skiprows, nrows 등 상세 옵션 제어)
+- pd.read_hdf() : HDF5 포맷 파일 읽기 (key 지정 필요)
+
+데이터 타입 확인 및 변경
+- df.dtypes : 열별 데이터 타입 확인
+- df.info() : 데이터프레임 전체 구조 및 결측치 여부 요약 확인
+- df['col'].astype() : 특정 열의 데이터 타입 변경
+- pd.to_numeric() : 숫자로 변환할 수 없는 데이터를 결측치(NaN)로 처리하며 수치형으로 변환 (errors='coerce')
+
+날짜 및 시간(Datetime) 데이터 다루기
+- pd.to_datetime() 또는 parse_dates : 문자열 형태의 날짜 데이터를 Datetime형으로 변환
+- df.Birth.dt.year / .month / .day : 날짜 데이터에서 연, 월, 일 추출
+- (current_date - df.Birth).dt.days : 날짜 간 차이(일수) 계산
+
+머신러닝 예제 데이터 활용 (iris)
+- sklearn.datasets.load_iris() : 사이킷런 학습용 데이터셋(딕셔너리 형태) 불러오기
+- 독립변수(data)와 종속변수(target) 분리 및 전처리 활용
+
+열/행 이름 및 부분 데이터 조회
+- columns / index 지정 및 이름 변경
+- 열 조회, .loc[](라벨 기반 조회), .iloc[](위치 기반 조회) 및 조건식 기반 조회
+
+데이터 삭제 및 추가
+- 데이터프레임의 특정 요소 및 열 삭제, 새로운 열 추가
+
+병합과 연결
+- pd.merge() : 키(Key)를 기준으로 데이터프레임 병합
+- pd.concat() : 행 또는 열 방향으로 데이터프레임 연결
+
+정렬 및 기초 통계 분석
+- 행 이름, 열 이름, 혹은 특정 값(sort_values)에 의한 정렬
+- 집계 함수(min, max, mean, sum) 및 요약통계량(describe()), 공분산 및 상관계수 분석
+
+데이터 그룹화 및 집계
+	- Group by
+		df.groupby(by=[그룹핑할열이름])[출력할열].기초통계함수(): 특정 열 기준 그룹화 및 집계(생략 시 전체 열)
+		as_index=False: 그룹핑한 인덱스를 컬럼 데이터로 편입 (reset_index() 생략 가능)
+		df.pivot_table(): 피벗 테이블을 이용한 그룹별 집계 (index, values, aggfunc 활용)
+		다중열 그룹화: 리스트 형태로 여러 열을 지정하여 다중 그룹 집계 (예: df.groupby(['Species', 'num'])) 
+	- 그룹 간 데이터 처리
+		for speciesname, group in iris_grouped:: 반복문으로 그룹별 데이터프레임 순회
+	- 데이터프레임 그룹별 인덱싱
+		df.groupby('Species').take([0, 15, 30, 40]): 각 그룹별 특정 인덱스 행 추출
+
+데이터 구조 변경
+	- melt를 이용한 언피벗팅 (와이드포맷 $\rightarrow$ 롱포맷)
+		df.melt(id_vars, value_vars, var_name, value_name): 고정할 열을 제외한 나머지 열들을 행으로 길게 펼침
+	- pivot_table을 이용한 피벗팅 (롱포맷 $\rightarrow$ 와이드포맷)
+		df.pivot_table(index, columns, values): 롱포맷 데이터를 와이드포맷으로 재구조화
+
+데이터프레임에 함수 적용시키기
+	- apply / map
+		apply(func, axis): 데이터프레임이나 1차원 시리즈에 함수 적용
+		map(func): 1차원 시리즈의 각 요소별 함수 적용
+	- applymap
+		applymap(func): 데이터프레임의 모든 개별 요소별 함수 적용
+일괄 변경하기 (결측치나 특정값)
+	- fillna(): 결측치(NaN) 대체
+	- replace(): 특정 값을 새로운 값으로 교체 (inplace 옵션 지원)
+	- where(), mask(): 조건에 따른 값 필터링 및 대체
+	- dropna(): 결측치 행/열 제거
