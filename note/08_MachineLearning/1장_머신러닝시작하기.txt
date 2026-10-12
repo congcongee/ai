@@ -1,0 +1,127 @@
+1절. 머신러닝 개요
+
+1. 데이터 분석 및 모델링
+  - 인사이트 및 EDA: Pandas, NumPy, Matplotlib, Seaborn
+  - 최적화 및 모델링: scikit-learn, statsmodels, scipy
+
+2. 머신러닝 학습 유형
+   1) 지도학습(감독학습)
+    - 정답(레이블)이 있는 데이터로 학습
+    - SVM, Decision Tree, Random Forest, Logistic Regression
+
+   2) 비지도학습(자율학습)
+    - 정답 없이 데이터의 패턴이나 구조를 학습
+    - K-Means(군집), PCA(주성분분석)
+
+
+2절. 데이터 탐색(EDA)
+
+1. 변수의 종류
+    1) 속성별 분류
+    - 명목척도: 구분만 가능한 데이터
+    - 순서척도: 순서가 있는 데이터
+    - 구간척도: 간격에 의미가 있는 데이터
+    - 비율척도: 절대적 0이 존재하는 데이터
+
+    2) 타입별 분류
+    - 범주형: 종류나 그룹으로 구분
+    - 이산형: 셀 수 있는 값
+    - 연속형: 연속적인 수치
+
+2. 통계 요약
+    1) 중심위치 측도
+    - 평균(Mean)
+    - 중앙값(Median)
+    - 최빈값(Mode)
+
+    2) 분포 형태 및 산포 관련 지표
+    - 왜도(Skewness): 분포의 비대칭 정도
+    - 첨도(Kurtosis): 분포의 꼬리 특성
+    - 분산, 표준편차: 데이터의 퍼짐 정도
+
+3. EDA 자동화 도구(dataprep.eda)
+  - plot(): 변수 분포 시각화 및 자동 리포트
+  - plot_correlation(): 상관관계 시각화
+  - plot_missing(): 결측값 분포 확인
+  - plot_diff(): 두 데이터프레임 비교
+
+4. 상관분석 및 독립성 검정
+  - 피어슨 상관계수(pearsonr)
+    : 연속형 변수 간 선형 관계 분석
+  - 스피어만 상관계수(spearmanr)
+    : 순위 기반의 단조 관계 분석
+  - 피셔의 정확 검정(fisher_exact)
+    : 표본이 적은 2x2 분할표의 독립성 검정
+  - 맥니마 검정(mcnemar)
+    : 대응표본의 이분형 결과 변화 검정
+
+
+3절. 데이터 전처리
+
+1. 데이터 처리 과정
+  데이터 수집 → 전처리 → 모델 구축 → 평가 → 배포
+  - 전처리는 분석 과정에서 많은 시간과 노력이 필요한 단계
+
+2. 데이터 스케일 조정(Scaler)
+  - StandardScaler: 평균 0, 표준편차 1로 표준화
+  - MinMaxScaler: 지정 범위로 변환(기본값 0~1)
+  - MaxAbsScaler: 절댓값 최댓값 기준으로 조정(-1~1)
+  - RobustScaler: 중앙값과 IQR 활용, 이상치에 비교적 강함
+  - Normalizer: 행 단위 벡터 크기를 1로 정규화
+
+3. 범주형 데이터 인코딩
+  - LabelEncoder: 범주를 정수로 변환(주로 타겟에 사용)
+  - OneHotEncoder: 범주별 독립 컬럼 생성(0, 1)
+  - LabelBinarizer: 레이블을 이진 형태로 변환
+  - pd.get_dummies(): 범주형 데이터를 더미 변수로 변환
+  - 평균값 인코딩: 범주를 타겟 평균으로 변환
+    ※ 데이터 누수 및 과적합 주의
+
+4. 결측값 처리
+  - SimpleImputer, fillna 활용
+  - mean: 평균값
+  - median: 중앙값
+  - most_frequent: 최빈값
+
+
+4절. 데이터 분리
+
+1. 훈련/테스트 데이터셋 분리
+  - 모델의 일반화 성능 평가를 위해 수행
+  - train_test_split() 사용
+
+2. 주요 파라미터
+  - test_size=0.3: 테스트 데이터 30%
+  - shuffle=True: 무작위로 섞어서 분리
+  - stratify=y: 타겟 클래스 비율 유지
+  - random_state=42: 동일한 분할 결과 재현
+
+3. 주의사항
+  - 테스트 데이터는 모델 학습에 사용하지 않음
+  - 스케일러와 결측값 처리기는 훈련 데이터로 학습
+  - 시계열 데이터는 시간 순서를 고려하여 분리
+
+
+5절. 모형 생성, 예측 및 저장
+
+1. 모형 생성 및 학습
+  - DecisionTreeClassifier: 의사결정나무 분류기
+  - MLPClassifier: 다층 신경망 분류기
+
+2. 모형 성능 평가
+  - model.score(): 분류 모델에서는 기본적으로 정확도 반환
+  - pd.crosstab(): 실제값과 예측값 비교
+  - 추가 지표: 정확도, 정밀도, 재현율, F1-score
+
+3. 모형 저장 및 불러오기
+    1) pickle
+    - pickle.dump(): 객체 저장
+    - pickle.load(): 객체 불러오기
+
+    2) joblib
+    - joblib.dump(): 모델 저장
+    - joblib.load(): 모델 불러오기
+    - compress: 압축 옵션 지원
+    - NumPy 배열이 많은 모델 저장에 유용
+
+  ※ 신뢰할 수 없는 pickle/joblib 파일은 불러오지 않기
