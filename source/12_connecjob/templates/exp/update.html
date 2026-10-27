@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}경험 수정{% endblock %}
+{% block content %}
+<section class="page">
+  <div class="wrap">
+    <div class="form-box narrow">
+      <div class="page-title">
+        <span class="eyebrow">E{{ exp.id }}</span>
+        <h2 class="display">경험 수정</h2>
+      </div>
+      <div class="field">
+        <label for="title">경험 이름</label>
+        <input type="text" id="title" value="{{ exp.title }}" required>
+      </div>
+      <div class="field">
+        <label for="content">한 일과 결과</label>
+        <textarea id="content">{{ exp.content }}</textarea>
+      </div>
+      <div class="field">
+        <label for="skills">사용 기술 (쉼표로 구분)</label>
+        <input type="text" name="skills" id="skills" value="{{ exp.skills | join(', ') }}" data-preview="skillPreview">
+        <div class="chips" id="skillPreview"></div>
+      </div>
+      <p>
+        <a href="{{ url_for('exps') }}" class="btn">목록</a>
+        <button class="btn primary update">수정</button>
+      </p>
+    </div>
+  </div>
+</section>
+<script>
+  // 주소에는 id만, 데이터는 body에 JSON으로 (web_flask update.html과 같은 방식)
+  document.querySelector('.update').addEventListener('click', function(){
+    api.put('/exps/{{ exp.id }}', {
+      title: document.getElementById('title').value,
+      content: document.getElementById('content').value,
+      skills: document.getElementById('skills').value
+    })
+    .then(data => { alert(data); location.href = '/exps'; })
+    .catch(err => alert(`실패 : ${err.message}`));
+  });
+</script>
+{% endblock %}

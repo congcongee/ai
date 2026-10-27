@@ -1,0 +1,13 @@
+{# 직무·기업 규모 필터 (select 바뀌면 바로 submit) #}
+<form class="filter" method="get">
+  <select name="job" onchange="this.form.submit()">
+    <option value="">직무 전체</option>
+    {% for j in JOBS %}<option {% if j == job %}selected{% endif %}>{{ j }}</option>{% endfor %}
+  </select>
+  {% if size is defined %}
+  <select name="size" onchange="this.form.submit()">
+    <option value="">기업 규모 전체</option>
+    {% for s in SIZES %}<option {% if s == size %}selected{% endif %}>{{ s }}</option>{% endfor %}
+  </select>
+  {% endif %}
+</form>

@@ -1,0 +1,23 @@
+<header>
+  <div class="wrap">
+    <a href="{{ url_for('index') }}" class="logo">Connec<span>Job</span></a>
+    <button id="menuBtn" aria-label="메뉴">≡</button>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('exps') }}">내 경험</a></li>
+        <li><a href="{{ url_for('results') }}">공고 추천</a></li>
+        <li><a href="{{ url_for('roadmap_page') }}">준비 로드맵</a></li>
+        <li><a href="{{ url_for('jobs') }}">전체 공고</a></li>
+        <li class="user">
+          {% if session.get('user_id') %}
+            <span>{{ session['user_name'] }}님</span>
+            <a href="{{ url_for('logout') }}" class="btn">로그아웃</a>
+          {% else %}
+            <a href="{{ url_for('login') }}" class="btn">로그인</a>
+            <a href="{{ url_for('join') }}" class="btn lime">회원가입</a>
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

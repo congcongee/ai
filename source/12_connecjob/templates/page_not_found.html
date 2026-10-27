@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}404{% endblock %}
+{% block content %}
+<section class="page">
+  <div class="wrap">
+    <div class="empty">
+      <p class="display" style="font-size:64px;color:var(--indigo)">404</p>
+      <p>{{ error.description }}</p>
+      <p style="margin-top:16px"><a href="{{ url_for('index') }}" class="btn primary">메인으로</a></p>
+    </div>
+  </div>
+</section>
+{% endblock %}

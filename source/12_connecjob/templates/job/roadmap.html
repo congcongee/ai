@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}준비 로드맵{% endblock %}
+{% block content %}
+<section class="page">
+  <div class="wrap">
+    <div class="page-title">
+      <span class="eyebrow">STEP 3</span>
+      <h2 class="display">{{ job }} 준비 로드맵</h2>
+      <p>{{ job }} 공고에서 요구하는 기술을 요구 비율이 높은 순으로 정리했습니다 (부족 기술 먼저)</p>
+    </div>
+    {% include "job/_filter.html" %}
+    <table class="tbl">
+      <thead><tr><th style="width:80px">순서</th><th>기술</th><th style="width:40%">요구 비율</th><th style="width:120px">내 역량</th></tr></thead>
+      <tbody>
+        {% for it in items %}
+        <tr class="{{ 'have' if it.have }}">
+          <td>{{ loop.index }}</td>
+          <td><b>{{ it.skill }}</b></td>
+          <td><div class="bar"><span data-width="{{ it.rate }}"></span></div> {{ it.rate }}%</td>
+          <td>{% if it.have %}<span class="chip on">보유</span>{% else %}<span class="chip lime">준비 필요</span>{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

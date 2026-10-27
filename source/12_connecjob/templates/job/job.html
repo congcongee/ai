@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ j.company }}{% endblock %}
+{% block content %}
+<section class="page">
+  <div class="wrap">
+    <div class="job-head">
+      <span class="lime">{{ j.company }} · {{ j.size }} · {{ j.job }}</span>
+      <h2 class="display">{{ j.title }}</h2>
+      <span>마감 {{ j.deadline }}</span>
+    </div>
+    <dl class="job-body">
+      <dt>요구 기술</dt>
+      <dd class="chips">{% for s in j.skills %}<span class="chip">{{ s }}</span>{% endfor %}</dd>
+      <dt>담당업무</dt><dd>{{ j.duties }}</dd>
+      <dt>자격요건</dt><dd>{{ j.requirements }}</dd>
+      <dt>우대사항</dt><dd>{{ j.preferred }}</dd>
+      <dt>자기소개서 문항</dt>
+      <dd><ol style="list-style:decimal;padding-left:20px">{% for q in j.questions %}<li>{{ q }}</li>{% endfor %}</ol></dd>
+    </dl>
+    <p style="margin-top:20px;display:flex;gap:8px">
+      <button class="btn" onclick="history.back()">뒤로</button>
+      <a href="{{ url_for('cover_letter_page', job_id=j.id) }}" class="btn lime">이 공고로 자소서 초안</a>
+    </p>
+  </div>
+</section>
+{% endblock %}

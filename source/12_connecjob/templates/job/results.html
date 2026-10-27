@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}공고 추천{% endblock %}
+{% block content %}
+<section class="page">
+  <div class="wrap">
+    <div class="page-title">
+      <span class="eyebrow">STEP 2</span>
+      <h2 class="display">추천 공고</h2>
+      <p>내 경험과 공고 요구 기술을 비교한 결과입니다 (점수 = 기술 일치율 70% + 직무 일치 30%)</p>
+    </div>
+    {% include "job/_filter.html" %}
+    {% if not has_exp %}
+      <div class="empty">경험을 먼저 등록하세요. <a href="{{ url_for('exps') }}" class="btn primary sm">경험 입력</a></div>
+    {% endif %}
+    {% for r in recs %}
+    <article class="rec">
+      <div class="score"><strong>{{ r.score }}</strong><small>매칭 점수</small></div>
+      <div class="body">
+        <p class="meta">{{ r.company }} · {{ r.size }} · {{ r.job }} · 마감 {{ r.deadline }}</p>
+        <h3>{{ r.title }}</h3>
+        <div class="bar"><span data-width="{{ r.score }}"></span></div>
+        <div class="chips">
+          {% for s in r.matched %}<span class="chip on">{{ s }}</span>{% endfor %}
+          {% for s in r.missing %}<span class="chip off">{{ s }}</span>{% endfor %}
+        </div>
+        {% if r.evidence %}
+        <ul class="evidence">
+          {% for ev in r.evidence %}
+          <li><b>{{ ev.skill }}</b> ← {% for id in ev.exp_ids %}E{{ id }} {{ exp_titles[id] }}{{ ', ' if not loop.last }}{% endfor %}</li>
+          {% endfor %}
+        </ul>
+        <p class="meta">공고 원문 : “{{ r.requirements }}”</p>
+        {% endif %}
+        <div class="actions">
+          <a href="{{ url_for('job', id=r.id) }}" class="btn sm">공고 원문</a>
+          <a href="{{ url_for('roadmap_page', job=r.job) }}" class="btn sm">준비 로드맵</a>
+          <a href="{{ url_for('cover_letter_page', job_id=r.id) }}" class="btn sm lime">자소서 초안</a>
+        </div>
+      </div>
+    </article>
+    {% else %}
+      {% if has_exp %}<div class="empty">조건에 맞는 공고가 없습니다.</div>{% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}전체 공고{% endblock %}
+{% block content %}
+<section class="page">
+  <div class="wrap">
+    <div class="page-title">
+      <span class="eyebrow">JOBS</span>
+      <h2 class="display">전체 공고</h2>
+      <p>수집한 채용공고 {{ jobs | length }}건 (예시 데이터)</p>
+    </div>
+    {% include "job/_filter.html" %}
+    <table class="tbl">
+      <thead><tr><th>#</th><th>기업</th><th>규모</th><th>직무</th><th>공고</th><th>마감</th></tr></thead>
+      <tbody>
+        {% for j in jobs %}
+        <tr data-href="{{ url_for('job', id=j.id) }}">
+          <td>{{ j.id }}</td><td>{{ j.company }}</td><td>{{ j.size }}</td>
+          <td>{{ j.job }}</td><td><b>{{ j.title }}</b></td><td>{{ j.deadline }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="6">조건에 맞는 공고가 없습니다.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
