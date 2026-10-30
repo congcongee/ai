@@ -123,16 +123,12 @@
 
 ## 📊 GitHub Activity
 
-![Followers](https://img.shields.io/github/followers/4aix?style=social)
-![Stars](https://img.shields.io/github/stars/4aix?style=social)
-![Profile Views](https://komarev.com/ghpvc/?username=4aix&color=blueviolet&style=flat-square&label=Profile+Views)
-![Repos](https://img.shields.io/badge/dynamic/json?color=blue&label=Repositories&query=public_repos&url=https://api.github.com/users/4aix)
-![Commits](https://img.shields.io/github/commit-activity/m/4aix/ai)
+![Followers](https://img.shields.io/github/followers/congcongee?style=social)
+![Stars](https://img.shields.io/github/stars/congcongee?style=social)
+![Profile Views](https://komarev.com/ghpvc/?username=congcongee&color=blueviolet&style=flat-square&label=Profile+Views)
+![Repos](https://img.shields.io/badge/dynamic/json?color=blue&label=Repositories&query=public_repos&url=https://api.github.com/users/congcongee)
+![Commits](https://img.shields.io/github/commit-activity/m/congcongee/ai)
 
 ---
 
-<div align="center">
 
-**⚠️ 본 레파지토리는 교육과정 종료 후(2026.11.20) 삭제될 수 있습니다 ⚠️**
-
-</div>
