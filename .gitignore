@@ -9,3 +9,5 @@ __pycache__/
 09_Project/
 .vercel/
 db.sqlite3
+Thumbs.db
+~$*
