@@ -8,3 +8,4 @@ __pycache__/
 .env
 09_Project/
 .vercel/
+db.sqlite3
